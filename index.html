@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GiftGenie – AI Gift Finder</title>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background: #f7f7f7;
+    }
+
+    header {
+        background: purple;
+        color: white;
+        padding: 20px;
+        text-align: center;
+        font-size: 26px;
+        font-weight: bold;
+    }
+
+    .container {
+        width: 90%;
+        max-width: 600px;
+        margin: 40px auto;
+        background: white;
+        padding: 25px;
+        border-radius: 12px;
+        box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    }
+
+    input, textarea, button {
+        width: 100%;
+        padding: 14px;
+        margin-top: 12px;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+        font-size: 16px;
+    }
+
+    button {
+        background: purple;
+        color: white;
+        border: none;
+        cursor: pointer;
+        font-size: 18px;
+    }
+
+    button:hover {
+        opacity: 0.85;
+    }
+
+    .results {
+        margin-top: 25px;
+        padding: 15px;
+        background: #f0f0f0;
+        border-radius: 8px;
+    }
+</style>
+</head>
+
+<body>
+
+<header>GiftGenie 🎁</header>
+
+<div class="container">
+    <h2>Find the Perfect Gift</h2>
+    <p>Enter someone’s interests and GiftGenie will give you AI-powered gift ideas.</p>
+
+    <textarea id="interests" placeholder="Example: basketball, makeup, gaming, fashion"></textarea>
+    <button onclick="generateGiftIdeas()">Find Gifts</button>
+
+    <div id="output" class="results" style="display:none;"></div>
+</div>
+
+<script>
+function generateGiftIdeas() {
+    let interests = document.getElementById("interests").value;
+
+    if(interests.trim() === "") {
+        alert("Please enter at least one interest.");
+        return;
+    }
+
+    const ideas = [
+        "Customized gift basket",
+        "Gaming accessories",
+        "Subscription box",
+        "Personalized artwork",
+        "Unique jewelry",
+        "Experience gift",
+        "High-end sports gear",
+        "Skincare bundle",
+        "Tech gadget",
+        "Fashion item",
+        "Custom photo book",
+        "Self-care kit",
+        "LED room lights",
+        "Collectible items"
+    ];
+
+    const randomIdeas = ideas
+        .sort(() => Math.random() - 0.5)
+        .slice(0, 5);
+
+    let result = `
+        <h3>Gift Ideas for Someone Who Likes:</h3>
+        <strong>${interests}</strong>
+        <ul>
+            ${randomIdeas.map(g => `<li>${g}</li>`).join("")}
+        </ul>
+
+        <h4>💰 How GiftGenie Makes Money:</h4>
+        <ul>
+            <li>Amazon affiliate links</li>
+            <li>Google ads</li>
+            <li>Sponsored gift recommendations</li>
+        </ul>
+    `;
+
+    let outputDiv = document.getElementById("output");
+    outputDiv.style.display = "block";
+    outputDiv.innerHTML = result;
+}
+</script>
+
+</body>
+</html>
